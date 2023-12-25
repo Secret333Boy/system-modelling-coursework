@@ -3,5 +3,5 @@ import runPhilosophyTask from './runPhilosophyTask';
 import runTestTask from './runTestTask';
 
 // runTestTask();
-// runPhilosophyTask();
-runPhilosophyDeadlockTask();
+runPhilosophyTask();
+// runPhilosophyDeadlockTask();

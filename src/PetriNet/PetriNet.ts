@@ -31,6 +31,8 @@ export class PetriNet {
           }
           transition.processing--;
           transition.quantity++;
+
+          if (transition.processing === 0) transition.nextOutTick = Infinity;
         }
       }
 
@@ -59,10 +61,15 @@ export class PetriNet {
         }
 
         transition.processing++;
-        transition.nextOutTick = transition.currentTick + 1;
+        transition.nextOutTick = transition.currentTick + transition.delay;
       }
 
       this.doStatistics(1);
+
+      // if (this.currentTick % 1000 === 0) {
+      //   console.log(`!!!${this.currentTick}!!!`);
+      //   this.logResults();
+      // }
       this.currentTick++;
     }
   }
