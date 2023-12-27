@@ -43,20 +43,20 @@ const runPhilosophyTask = () => {
     philosopher5Think,
   ];
 
-  const philosopher1Pick = new Transition('Pick1', 3);
-  const philosopher1Put = new Transition('Put1', 3);
+  const philosopher1Pick = new Transition('Pick1', 1);
+  const philosopher1Put = new Transition('Put1', 1);
 
-  const philosopher2Pick = new Transition('Pick2', 3);
-  const philosopher2Put = new Transition('Put2', 3);
+  const philosopher2Pick = new Transition('Pick2', 1);
+  const philosopher2Put = new Transition('Put2', 1);
 
-  const philosopher3Pick = new Transition('Pick3', 3);
-  const philosopher3Put = new Transition('Put3', 3);
+  const philosopher3Pick = new Transition('Pick3', 1);
+  const philosopher3Put = new Transition('Put3', 1);
 
-  const philosopher4Pick = new Transition('Pick4', 3);
-  const philosopher4Put = new Transition('Put4', 3);
+  const philosopher4Pick = new Transition('Pick4', 1);
+  const philosopher4Put = new Transition('Put4', 1);
 
-  const philosopher5Pick = new Transition('Pick5', 3);
-  const philosopher5Put = new Transition('Put5', 3);
+  const philosopher5Pick = new Transition('Pick5', 1);
+  const philosopher5Put = new Transition('Put5', 1);
 
   const transitions = [
     philosopher1Pick,
@@ -159,36 +159,36 @@ const runPhilosophyTask = () => {
 
   const time = 10000;
 
-  petriNet.simulate(time);
-  petriNet.logResults();
+  petriNet.traceTree(time);
+  // petriNet.logResults();
 
-  const meanTimeThinking =
-    [
-      philosopher1Think,
-      philosopher2Think,
-      philosopher3Think,
-      philosopher4Think,
-      philosopher5Think,
-    ]
-      .map((place) => place.meanValueParts)
-      .reduce((acc, el) => acc + el) /
-    (5 * time);
+  // const meanTimeThinking =
+  //   [
+  //     philosopher1Think,
+  //     philosopher2Think,
+  //     philosopher3Think,
+  //     philosopher4Think,
+  //     philosopher5Think,
+  //   ]
+  //     .map((place) => place.meanValueParts)
+  //     .reduce((acc, el) => acc + el) /
+  //   (5 * time);
 
-  const meanEaten =
-    [
-      philosopher1Put,
-      philosopher2Put,
-      philosopher3Put,
-      philosopher4Put,
-      philosopher5Put,
-    ]
-      .map((transition) => transition.quantity)
-      .reduce((acc, el) => acc + el) / 5;
+  // const meanEaten =
+  //   [
+  //     philosopher1Put,
+  //     philosopher2Put,
+  //     philosopher3Put,
+  //     philosopher4Put,
+  //     philosopher5Put,
+  //   ]
+  //     .map((transition) => transition.quantity)
+  //     .reduce((acc, el) => acc + el) / 5;
 
-  console.log();
+  // console.log();
 
-  console.log(`Mean time thinking: ${meanTimeThinking}`);
-  console.log(`Mean eaten: ${meanEaten}`);
+  // console.log(`Mean time thinking: ${meanTimeThinking}`);
+  // console.log(`Mean eaten: ${meanEaten}`);
 };
 
 export default runPhilosophyTask;
