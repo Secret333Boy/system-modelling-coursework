@@ -15,24 +15,17 @@ export class PetriNet {
     while (this.currentTick <= ticks) {
       // OUT
       for (const transition of this.transitions) {
-        transition.currentTick = this.currentTick;
-
         const transitionArcs = this.arcs.get(transition);
         if (!transitionArcs) continue;
 
         const { arcsOut } = transitionArcs;
 
-        if (
-          transition.nextOutTick === transition.currentTick &&
-          transition.processing > 0
-        ) {
+        if (transition.processing) {
           for (const arcOut of arcsOut) {
             arcOut.target.markers += arcOut.multiplicity;
           }
-          transition.processing--;
+          transition.processing = false;
           transition.quantity++;
-
-          if (transition.processing === 0) transition.nextOutTick = Infinity;
         }
       }
 
@@ -60,8 +53,7 @@ export class PetriNet {
           arcIn.source.markers -= arcIn.multiplicity;
         }
 
-        transition.processing++;
-        transition.nextOutTick = transition.currentTick + transition.delay;
+        transition.processing = true;
       }
 
       this.doStatistics(1);
@@ -89,24 +81,17 @@ export class PetriNet {
     while (this.currentTick <= ticks) {
       // OUT
       for (const transition of this.transitions) {
-        transition.currentTick = this.currentTick;
-
         const transitionArcs = this.arcs.get(transition);
         if (!transitionArcs) continue;
 
         const { arcsOut } = transitionArcs;
 
-        if (
-          transition.nextOutTick === transition.currentTick &&
-          transition.processing > 0
-        ) {
+        if (transition.processing) {
           for (const arcOut of arcsOut) {
             arcOut.target.markers += arcOut.multiplicity;
           }
-          transition.processing--;
+          transition.processing = false;
           transition.quantity++;
-
-          if (transition.processing === 0) transition.nextOutTick = Infinity;
         }
       }
 
@@ -142,8 +127,7 @@ export class PetriNet {
           arcIn.source.markers -= arcIn.multiplicity;
         }
 
-        transition.processing++;
-        transition.nextOutTick = transition.currentTick + transition.delay;
+        transition.processing = true;
       }
 
       this.doStatistics(1);
@@ -168,7 +152,7 @@ export class PetriNet {
     }
 
     for (const transition of this.transitions) {
-      transition.meanBusinessParts += transition.processing / delta;
+      transition.meanBusinessParts += transition.processing ? 1 : 0;
     }
   }
 

@@ -159,36 +159,36 @@ const runPhilosophyTask = () => {
 
   const time = 10000;
 
-  petriNet.traceTree(time);
-  // petriNet.logResults();
+  petriNet.simulate(time);
+  petriNet.logResults();
 
-  // const meanTimeThinking =
-  //   [
-  //     philosopher1Think,
-  //     philosopher2Think,
-  //     philosopher3Think,
-  //     philosopher4Think,
-  //     philosopher5Think,
-  //   ]
-  //     .map((place) => place.meanValueParts)
-  //     .reduce((acc, el) => acc + el) /
-  //   (5 * time);
+  const meanTimeThinking =
+    [
+      philosopher1Think,
+      philosopher2Think,
+      philosopher3Think,
+      philosopher4Think,
+      philosopher5Think,
+    ]
+      .map((place) => place.meanValueParts)
+      .reduce((acc, el) => acc + el) /
+    (5 * time);
 
-  // const meanEaten =
-  //   [
-  //     philosopher1Put,
-  //     philosopher2Put,
-  //     philosopher3Put,
-  //     philosopher4Put,
-  //     philosopher5Put,
-  //   ]
-  //     .map((transition) => transition.quantity)
-  //     .reduce((acc, el) => acc + el) / 5;
+  const meanEaten =
+    [
+      philosopher1Put,
+      philosopher2Put,
+      philosopher3Put,
+      philosopher4Put,
+      philosopher5Put,
+    ]
+      .map((transition) => transition.quantity)
+      .reduce((acc, el) => acc + el) / 5;
 
-  // console.log();
+  console.log();
 
-  // console.log(`Mean time thinking: ${meanTimeThinking}`);
-  // console.log(`Mean eaten: ${meanEaten}`);
+  console.log(`Mean time thinking: ${meanTimeThinking}`);
+  console.log(`Mean eaten: ${meanEaten}`);
 };
 
 export default runPhilosophyTask;
