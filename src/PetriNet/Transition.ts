@@ -6,7 +6,6 @@ export class Transition {
 
   constructor(
     public readonly name = `T${Transition.nextTransitionId++}`,
-    public readonly delay = 1,
     public processing = false
   ) {}
 }

@@ -56,7 +56,7 @@ export class PetriNet {
         transition.processing = true;
       }
 
-      this.doStatistics(1);
+      this.doStatistics();
 
       // if (this.currentTick % 1000 === 0) {
       //   console.log(`!!!${this.currentTick}!!!`);
@@ -130,7 +130,7 @@ export class PetriNet {
         transition.processing = true;
       }
 
-      this.doStatistics(1);
+      this.doStatistics();
       this.currentTick++;
     }
 
@@ -146,9 +146,9 @@ export class PetriNet {
     return this.getMarkings().join('');
   }
 
-  public doStatistics(delta: number) {
+  public doStatistics() {
     for (const place of this.places) {
-      place.meanValueParts += place.markers / delta;
+      place.meanValueParts += place.markers;
     }
 
     for (const transition of this.transitions) {

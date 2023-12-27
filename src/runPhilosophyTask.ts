@@ -43,20 +43,20 @@ const runPhilosophyTask = () => {
     philosopher5Think,
   ];
 
-  const philosopher1Pick = new Transition('Pick1', 1);
-  const philosopher1Put = new Transition('Put1', 1);
+  const philosopher1Pick = new Transition('Pick1');
+  const philosopher1Put = new Transition('Put1');
 
-  const philosopher2Pick = new Transition('Pick2', 1);
-  const philosopher2Put = new Transition('Put2', 1);
+  const philosopher2Pick = new Transition('Pick2');
+  const philosopher2Put = new Transition('Put2');
 
-  const philosopher3Pick = new Transition('Pick3', 1);
-  const philosopher3Put = new Transition('Put3', 1);
+  const philosopher3Pick = new Transition('Pick3');
+  const philosopher3Put = new Transition('Put3');
 
-  const philosopher4Pick = new Transition('Pick4', 1);
-  const philosopher4Put = new Transition('Put4', 1);
+  const philosopher4Pick = new Transition('Pick4');
+  const philosopher4Put = new Transition('Put4');
 
-  const philosopher5Pick = new Transition('Pick5', 1);
-  const philosopher5Put = new Transition('Put5', 1);
+  const philosopher5Pick = new Transition('Pick5');
+  const philosopher5Put = new Transition('Put5');
 
   const transitions = [
     philosopher1Pick,

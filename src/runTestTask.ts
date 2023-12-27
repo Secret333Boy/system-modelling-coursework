@@ -86,7 +86,7 @@ const runTestTask = () => {
 
   const petriNet = new PetriNet(places, transitions, arcsMap);
 
-  petriNet.simulate(1000);
+  petriNet.simulate(100000);
   petriNet.logResults();
 };
 
