@@ -30,29 +30,30 @@ export class PetriNet {
       }
 
       // IN
-      const transitionsToBeActivated: Transition[] = this.transitions.slice();
+      const transitionsToBeActivated: Transition[] = this.transitions.slice(); // робимо копію масиву переходів
 
       while (transitionsToBeActivated.length !== 0) {
         const randomIndex = Math.floor(
           Math.random() * transitionsToBeActivated.length
-        );
+        ); // генеруємо випадковий індекс у копії масиву переходів
 
-        const transition = transitionsToBeActivated.splice(randomIndex, 1)[0];
+        const transition = transitionsToBeActivated.splice(randomIndex, 1)[0]; // "відриваємо" елемент за випадковим індексом, згенерованим вище
 
-        const transitionArcs = this.arcsMap.get(transition);
+        const transitionArcs = this.arcsMap.get(transition); // тут відсутня багатоканальність, адже цей перехід може бути активований тілький один раз
         if (!transitionArcs) continue;
 
+        // а тут перевіряємо "відірваний" перехіж на умови активації
         const { arcsIn } = transitionArcs;
-
         if (
           !arcsIn.every((arcIn) => arcIn.source.markers >= arcIn.multiplicity)
         )
           continue;
 
+        // у всіх взідних позиціях забираємо маркери у кількості, що дорівнює кількості звязків
         for (const arcIn of arcsIn) {
           arcIn.source.markers -= arcIn.multiplicity;
         }
-
+        // вказуємо, що перехід активований
         transition.processing = true;
       }
 
