@@ -42,14 +42,14 @@ export class PetriNet {
         const transitionArcs = this.arcsMap.get(transition); // тут відсутня багатоканальність, адже цей перехід може бути активований тілький один раз
         if (!transitionArcs) continue;
 
-        // а тут перевіряємо "відірваний" перехіж на умови активації
+        // а тут перевіряємо "відірваний" перехід на умови активації
         const { arcsIn } = transitionArcs;
         if (
           !arcsIn.every((arcIn) => arcIn.source.markers >= arcIn.multiplicity)
         )
           continue;
 
-        // у всіх взідних позиціях забираємо маркери у кількості, що дорівнює кількості звязків
+        // у всіх вxідних позиціях забираємо маркери у кількості, що дорівнює кількості звязків
         for (const arcIn of arcsIn) {
           arcIn.source.markers -= arcIn.multiplicity;
         }
