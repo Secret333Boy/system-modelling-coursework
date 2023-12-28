@@ -8,14 +8,14 @@ export class PetriNet {
   constructor(
     private readonly places: Place[] = [],
     private readonly transitions: Transition[] = [],
-    private readonly arcs: ArcsMap = new ArcsMap()
+    private readonly arcsMap: ArcsMap = new ArcsMap()
   ) {}
 
   public simulate(ticks: number) {
     while (this.currentTick <= ticks) {
       // OUT
       for (const transition of this.transitions) {
-        const transitionArcs = this.arcs.get(transition);
+        const transitionArcs = this.arcsMap.get(transition);
         if (!transitionArcs) continue;
 
         const { arcsOut } = transitionArcs;
@@ -39,7 +39,7 @@ export class PetriNet {
 
         const transition = transitionsToBeActivated.splice(randomIndex, 1)[0];
 
-        const transitionArcs = this.arcs.get(transition);
+        const transitionArcs = this.arcsMap.get(transition);
         if (!transitionArcs) continue;
 
         const { arcsIn } = transitionArcs;
@@ -81,7 +81,7 @@ export class PetriNet {
     while (this.currentTick <= ticks) {
       // OUT
       for (const transition of this.transitions) {
-        const transitionArcs = this.arcs.get(transition);
+        const transitionArcs = this.arcsMap.get(transition);
         if (!transitionArcs) continue;
 
         const { arcsOut } = transitionArcs;
@@ -113,7 +113,7 @@ export class PetriNet {
 
         const transition = transitionsToBeActivated.splice(randomIndex, 1)[0];
 
-        const transitionArcs = this.arcs.get(transition);
+        const transitionArcs = this.arcsMap.get(transition);
         if (!transitionArcs) continue;
 
         const { arcsIn } = transitionArcs;
